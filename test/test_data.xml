@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<layout name="MYLAYOUT" type="dsect">
+    <field type="D" name="SIZE" length="2" useForFiller="yes" />
+    <field type="C" name="KEY" length="1" kind="group" />
+    <head> <!-- Common header for each rec -->
+        <field type="C" name="Head1" length="1" />
+        <field type="D" name="Head2" length="1" />
+    </head>
+    <group name="10" alias="Rec 0x10">
+        <field type="C" name="G1" length="1" />
+        <field type="C" name="G2" length="1" />
+    </group>
+    <group name="20" alias="Rec 0x20">
+        <field type="C" name="G11" length="1" />
+        <field type="C" name="G12" length="1" />
+    </group>
+</layout>

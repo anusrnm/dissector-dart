@@ -121,6 +121,35 @@ class Dissector {
         : "";
   }
 
+  static XmlElement? getMatchingElement(XmlElement parent, String childName, String attrName, String attrValue, String compareType) {
+    final elements = getChildElementsByTagName(parent, childName);
+    for (final element in elements) {
+      final attributeValue = element.getAttribute(attrName)?.toLowerCase() ?? "";
+      if (compareType.toLowerCase() == START && attrValue.toLowerCase().startsWith(attributeValue)) {
+        return element;
+      } else if (compareType.toLowerCase() == END && attrValue.toLowerCase().endsWith(attributeValue)) {
+        return element;
+      } else if (attrValue.toLowerCase() == attributeValue) {
+        return element;
+      }
+    }
+    return null;
+  }
+
+  static List<XmlElement> getChildElementsByTagName(XmlElement parent, String tagName) {
+    return parent.findElements(tagName).toList();
+  }
+
+  static XmlElement? getMatchingChildElement(XmlElement parent, String childElementName, String attrName, String attrValue) {
+    final children = getChildElementsByTagName(parent, childElementName);
+    for (final child in children) {
+      if (child.getAttribute(attrName) == attrValue) {
+        return child;
+      }
+    }
+    return null;
+  }
+
   String parseWith(String hexString) {
     res = StringBuffer();
     inputStr = hexString;
